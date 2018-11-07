@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Munka és elvándorlás kapcsolata Székelyföldön</title>
+	<title>Work and migration on Székelyföld</title>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	
@@ -38,11 +38,26 @@
 </head>
 <body>
 	<div id="app">
-	<h2 align="center">Munkakörök és elvándorlások közti kapcsolat megfigyelése Székelyföldön</h>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<button class="btn" @click="changeLang('HU')">HU</button>
+					<button class="btn" @click="changeLang('EN')">EN</button>
+					<button class="btn" @click="changeLang('RO')">RO</button>
+				</td>
+				<td style="padding-left:13vw">
+					<h2 align="center">{{title}}</h2>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<br>
 	<br>
-	<h4 id="segitseg" align="center"></h4>
-	<h4 id="magyarazat" align="center"></h4>
+	<div id = "text">
+		<h4 id="segitseg" align="center"></h4>
+		<h4 id="magyarazat" align="center"></h4>
+	</div>
 	<br>
 					
 	<h3 style="padding-left:7cm">{{selected}}</h3>
@@ -51,12 +66,12 @@
 			<tr>
 				<td>
 					<table class="table">
-						<tbody v-for="(szakma, index) in szakmak" :key="index">
+						<tbody v-for="(job, index) in jobs" :key="index">
 							<tr>
-								<td v-bind:id="'color-' + (selected==szakma)"
+								<td v-bind:id="'color-' + (selected==job)"
 									style="cursor: pointer"
-									@click="selected=szakma">
-									{{szakma}}
+									@click="selected=job; current=index">
+									{{job}}
 								</td>
 							</tr>
 						</tbody>

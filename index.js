@@ -94,10 +94,10 @@ let app = new Vue({
     },
 
     mounted() {
-        this.jobs = this.jobs_EN;
-        this.title = this.title_EN;
-        this.expl = this.expl_EN;
-        this.selected = this.jobs[1];
+        this.jobs = this.jobs_HU;
+        this.title = this.title_HU;
+        this.expl = this.expl_HU;
+        this.selected = this.jobs[0];
         console.log(this.come);
         document.getElementById("segitseg").innerHTML = this.expl;
         this.generateChord();
@@ -279,7 +279,7 @@ let app = new Vue({
 			.on("mouseover", fade(0.08))
             .on("mouseout", fade(1))
 			.append("svg:title")
-                .text(function(d, i) { return "went: " + went[i] + "\n" + "stayed: " + stays[i] + "\n" + "came: " + came[i]; });
+                .text(function(d, i) { return "elment: " + went[i] + "\n" + "maradt: " + stays[i] + "\n" + "jött: " + came[i]; });
 
         /// adding labels
         g.append("text")

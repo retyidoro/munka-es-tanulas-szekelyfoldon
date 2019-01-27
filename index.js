@@ -25,6 +25,11 @@ let app = new Vue({
         title_RO: "Analizarea relației între locuri de muncă și migrațiune la Székelyföld",
         title_EN: "Analysing the relation between working and migration on Székelyföld",
 
+        tab_title: undefined,
+        tab_title_HU: "Munka és tanulás Székelyföldön",
+        tab_title_RO: "Muncă și migrațiune la Székelyföld",
+        tab_title_EN: "Work and migration on Székelyföld",
+
         expl: undefined,
         expl_HU: "A vizualizáció az <a href='http://csaladenes.egologo.transindex.ro/?p=1129'>I. Székelydata adavtizualizációs pályázatra</a>  benyújtott pályamunka továbbfejlesztése. \n Az <a href='https://szekelydata.csaladen.es/verseny/data.json'>adatok</a> székelyföldiek nyilvános Facebook profiljairól lettek begyűjtve 2015-ben. (a neveket fiktív nevekre cserélték). A vizualizáció csupán tendenciákat sejtet, nem egzakt tényeket mutat be. \n Az alábbi ábrán a külső körök fölé tartva a kurzort, megfigyelhetjük az elvándorlás mértékét az illető város és munkakör kapcsán. \n A mindkét városnál vastagabb végű körívek azt jelzik, hogy kölcsönös átvándorlásról van szó. A szám a város mellett jelzi, hogy hányan vannak onnan.",
         expl_RO: "Vizualizarea este continuarea proiectului prezentat la <a href='http://csaladenes.egologo.transindex.ro/?p=1129'>I. concurs de vizualizarea datelor Székelydata</a>. \n <a href='https://szekelydata.csaladen.es/verseny/data.json'>Datele</a> sunt datele publice colectate de pe Facebook despre oameni provenite din Transilvania, din anul 2015. (numele au fost înlocuite cu nume fictive). Vizualizarea ne prezintă numai tendenții, nu fapte egzacte.  Pe diagramul de mai jos, deplasând cursorul peste cercuri externe putem să vedem măsura migrației în legătură cu orașul și locul de muncă selectat. Numărul lângă orașul ne arată câți provin din orașul respectiv.",
@@ -106,7 +111,9 @@ let app = new Vue({
         this.gone = this.gone_HU;
         this.stayed = this.stayed_HU;
         this.places = this.places_HU;
-        console.log(this.come);
+        this.tab_title = this.tab_title_HU;
+        
+        document.getElementsByTagName("title")[0].innerHTML = this.tab_title;
         document.getElementById("segitseg").innerHTML = this.expl;
         this.generateChord(this.gone, this.come, this.stayed, this.places);
     },
@@ -122,6 +129,7 @@ let app = new Vue({
                 this.stayed = this.stayed_HU;
                 this.come = this.come_HU;
                 this.places = this.places_HU;
+                this.tab_title = this.tab_title_HU;
             }
             else if (lang == 'RO') {
                 this.jobs = this.jobs_RO;
@@ -131,6 +139,7 @@ let app = new Vue({
                 this.stayed = this.stayed_RO;
                 this.come = this.come_RO;
                 this.places = this.places_RO;
+                this.tab_title = this.tab_title_RO;
             }
             else if (lang == 'EN') {
                 this.jobs = this.jobs_EN;
@@ -140,9 +149,11 @@ let app = new Vue({
                 this.stayed = this.stayed_EN;
                 this.come = this.come_EN;
                 this.places = this.places_RO;
+                this.tab_title = this.tab_title_EN;
             }
             this.selected = this.jobs[this.current];
             document.getElementById("segitseg").innerHTML = this.expl;
+            document.getElementsByTagName("title")[0].innerHTML = this.tab_title;
         },
         
         generateChord(go, co, st, places) {

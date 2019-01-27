@@ -43,7 +43,11 @@ let app = new Vue({
         come: undefined,
         come_HU: "jött",
         come_RO: "a venit",
-        come_EN: "came"
+        come_EN: "came",
+
+        places: undefined,
+        places_HU: [ 'Amerika', 'Balánbánya', 'Barót',   'Csíkszereda', 'Európa',  'Gyergyószentmiklós', 'Kolozsvár', 'Kovászna', 'Kézdivásárhely', 'Magyarország', 'Maroshévíz', 'Marosvásárhely', 'Más',     'Más románia város', 'Parajd',  'Segesvár', 'Sepsiszentgyörgy', 'Szentegyháza', 'Szováta', 'Szászrégen', 'Székelykeresztúr', 'Székelyudvarhely'],
+        places_RO: ['America', 'Bălan', 'Baraolt', 'Miercurea Ciuc', 'Europa', 'Gheorgheni', 'Cluj Napoca', 'Covasna', 'Târgu Secuiesc', 'Ungaria', 'Toplița', 'Târgu Mureș', 'Alte', 'Alte orașe din România', 'Praid', 'Sighișoara', 'Sfântu Gheorghe', 'Vlăhița', 'Sovata', 'Reghin', 'Cristuru Secuiesc', 'Odorheiu Secuiesc']
     },
 
     watch: {
@@ -89,7 +93,7 @@ let app = new Vue({
 		    	this.matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 22, 0, 1, 3, 0, 0, 2, 0, 2, 7, 0, 0, 0, 0, 2, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 9, 2, 1, 0, 3, 0, 2, 1, 0, 0, 0, 1, 0, 0, 0, 0, 2], [0, 0, 0, 0, 0, 0, 50, 0, 0, 2, 0, 1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 1, 2, 0, 0, 5, 2, 3, 4, 0, 1, 6, 0, 0, 0, 14, 0, 0, 0, 0, 2], [1, 0, 0, 0, 0, 0, 1, 2, 8, 2, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 2], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 1, 0, 6, 0, 0, 5, 0, 15, 12, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 9, 0, 0, 7, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 1, 1, 0, 3, 0, 1, 5, 0, 0, 0, 17, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 0, 0, 0, 0, 7, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5, 2, 0, 0, 0, 0, 0, 0, 9, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0], [0, 0, 0, 1, 0, 2, 3, 0, 0, 5, 0, 0, 4, 0, 1, 0, 0, 0, 0, 0, 0, 3]]
 		    else if(["Más", "Other", "Altele"].includes(this.selected))
 		    	this.matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 25, 0, 3, 0, 1, 3, 1, 0, 1, 0, 1, 61, 0, 0, 0, 0, 0, 0, 0, 0, 1], [1, 0, 24, 0, 0, 0, 1, 6, 0, 4, 0, 0, 20, 0, 0, 0, 6, 0, 0, 0, 0, 2], [0, 2, 0, 33, 1, 0, 2, 1, 0, 4, 0, 1, 27, 0, 0, 0, 1, 1, 0, 0, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 4, 0, 45, 4, 1, 0, 13, 0, 3, 42, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0, 150, 0, 0, 4, 0, 0, 44, 0, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 3, 5, 0, 1, 11, 10, 20, 14, 0, 2, 61, 0, 0, 0, 36, 0, 0, 0, 0, 1], [1, 0, 0, 4, 0, 1, 1, 12, 55, 3, 0, 2, 33, 0, 0, 0, 1, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 2, 0, 1, 1, 0, 0, 2, 53, 10, 53, 0, 0, 0, 0, 0, 0, 3, 0, 0], [0, 0, 0, 0, 0, 0, 11, 1, 0, 7, 0, 107, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 4, 0, 16, 0, 0, 0, 1, 0, 0, 3], [1, 0, 0, 0, 1, 0, 13, 0, 0, 1, 0, 4, 62, 0, 0, 65, 0, 0, 0, 0, 1, 1], [1, 0, 2, 3, 0, 1, 8, 7, 4, 13, 0, 0, 34, 0, 0, 0, 58, 0, 0, 0, 0, 0], [0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 2, 11, 0, 0, 0, 0, 26, 0, 0, 0, 4], [0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 6, 13, 0, 0, 0, 1, 0, 36, 0, 0, 0], [1, 0, 0, 1, 0, 1, 8, 0, 0, 1, 0, 11, 38, 0, 0, 0, 0, 0, 0, 55, 0, 0], [0, 0, 0, 0, 0, 1, 3, 1, 0, 13, 0, 4, 19, 0, 0, 0, 0, 0, 0, 0, 31, 3], [0, 0, 0, 0, 0, 0, 3, 0, 0, 9, 0, 1, 11, 0, 0, 1, 0, 0, 0, 0, 2, 35]]
-                this.generateChord();
+                this.generateChord(this.gone, this.come, this.stayed, this.places);
             }
     },
 
@@ -98,9 +102,13 @@ let app = new Vue({
         this.title = this.title_HU;
         this.expl = this.expl_HU;
         this.selected = this.jobs[0];
+        this.come = this.come_HU;
+        this.gone = this.gone_HU;
+        this.stayed = this.stayed_HU;
+        this.places = this.places_HU;
         console.log(this.come);
         document.getElementById("segitseg").innerHTML = this.expl;
-        this.generateChord();
+        this.generateChord(this.gone, this.come, this.stayed, this.places);
     },
 
     methods: {
@@ -113,6 +121,7 @@ let app = new Vue({
                 this.gone = this.gone_HU;
                 this.stayed = this.stayed_HU;
                 this.come = this.come_HU;
+                this.places = this.places_HU;
             }
             else if (lang == 'RO') {
                 this.jobs = this.jobs_RO;
@@ -121,7 +130,7 @@ let app = new Vue({
                 this.gone = this.gone_RO;
                 this.stayed = this.stayed_RO;
                 this.come = this.come_RO;
-                console.log(this.gone);
+                this.places = this.places_RO;
             }
             else if (lang == 'EN') {
                 this.jobs = this.jobs_EN;
@@ -130,36 +139,37 @@ let app = new Vue({
                 this.gone = this.gone_EN;
                 this.stayed = this.stayed_EN;
                 this.come = this.come_EN;
+                this.places = this.places_RO;
             }
             this.selected = this.jobs[this.current];
             document.getElementById("segitseg").innerHTML = this.expl;
         },
         
-        generateChord() {
+        generateChord(go, co, st, places) {
             d3.selectAll("svg > *").remove();
             d3.select("#chart").remove();
             
-                var stays = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                var came = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                var count =[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                var went = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                
-                for (var i = 1; i < 22; ++i) {
-                    stays[i] = this.matrix[i][i];
-                }
+            var stays = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var came = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var count =[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var went = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             
-                for (var i = 0; i < 22; ++i) {
-                    stays[i] = this.matrix[i][i]
-                    for (var j = 0; j < 22; ++j) {
-                        came[i] = came[i] + this.matrix[j][i]
-                        count[i] = count[i] + this.matrix[i][j];
-                    }
+            for (var i = 1; i < 22; ++i) {
+                stays[i] = this.matrix[i][i];
+            }
+        
+            for (var i = 0; i < 22; ++i) {
+                stays[i] = this.matrix[i][i]
+                for (var j = 0; j < 22; ++j) {
+                    came[i] = came[i] + this.matrix[j][i]
+                    count[i] = count[i] + this.matrix[i][j];
                 }
-            
-                for (var i = 1; i < 22; ++i) {
-                    went[i] = count[i] - stays[i];
-                    came[i] = came[i] - stays[i];
-                }
+            }
+        
+            for (var i = 1; i < 22; ++i) {
+                went[i] = count[i] - stays[i];
+                came[i] = came[i] - stays[i];
+            }
 
             var w = 1000;
             var h = 700;
@@ -180,14 +190,10 @@ let app = new Vue({
             var outerRadius = Math.min(width, height) * 0.5 -55
             var innerRadius = outerRadius - 30
         
-            var Names = [ 'Amerika', 'Balánbánya', 'Barót',   'Csíkszereda', 'Európa',  'Gyergyószentmiklós', 'Kolozsvár', 'Kovászna', 'Kézdivásárhely', 'Magyarország', 'Maroshévíz', 'Marosvásárhely', 'Más',     'Más románia város', 'Parajd',  'Segesvár', 'Sepsiszentgyörgy', 'Szentegyháza', 'Szováta', 'Szászrégen', 'Székelykeresztúr', 'Székelyudvarhely']
+            var Names = places;//[ 'Amerika', 'Balánbánya', 'Barót',   'Csíkszereda', 'Európa',  'Gyergyószentmiklós', 'Kolozsvár', 'Kovászna', 'Kézdivásárhely', 'Magyarország', 'Maroshévíz', 'Marosvásárhely', 'Más',     'Más románia város', 'Parajd',  'Segesvár', 'Sepsiszentgyörgy', 'Szentegyháza', 'Szováta', 'Szászrégen', 'Székelykeresztúr', 'Székelyudvarhely']
             var colors = ["#8d6e63", "#ef5350",    "#d32f2f", "#ffa726",     "#ffca28", "#558b2f",            "#1e88e5",   "#cddc39",  "#64b5f6",        "#d32f2f",   "#3f51b5"   ,   "#7cb342",        "#ff1744", "#ffeb3b",           "#f48fb1", "#d81b60",  "#ab47bc",          "#26a69a",      "#ce93d8", "#ff4081",    "#fdd835",          "#ff7043"]
             var opacity = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
-        
-           
-            //document.getElementById("segitseg").innerHTML = " A külső körök fölé tartva az egeret városonként megtekinthetjük, hogy szakterületenként hova mennyien vándorolnak el, esetleg érkeznek, illetve maradnak szülőföldükön."
-            //document.getElementById("magyarazat").innerHTML = "A mindkét városnál vastagabb végű körívek azt jelzik, hogy kölcsönös átvándorlásról van szó."
-                
+             
             var chordGenerator = d3.chord()
 			    .padAngle(0.04)
 			    .sortSubgroups(d3.descending)
@@ -209,101 +215,83 @@ let app = new Vue({
 
             var color = d3.scaleOrdinal()
 		    	.domain(d3.range(22))
-		    	.range(colors)
+                .range(colors)
+                
+		    function getGradID(d) { return d.source.index; }
+        
+            var grads = svg.append("defs")
+                .selectAll("linearGradient")
+                .data(chord)
+                .enter()
+                .append("linearGradient")
+                .attr("id", getGradID)
+                .attr("gradientUnits", "userSpaceOnUse")
+                //.attr("x1", function(d, i){ return innerRadius * Math.cos((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2); })
+                //.attr("y1", function(d, i){ return innerRadius * Math.sin((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2); })
+                //.attr("x2", function(d, i){ return innerRadius * Math.cos((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2); })
+                //.attr("y2", function(d, i){ return innerRadius * Math.sin((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2); })
 
+            // set the starting color (at 0%)
+            grads.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", function(d){ return color(d.source.index)})
 
-          // d3.csv("Character_mentions.csv", function(error, data){
-          //   data.forEach(function(d){
-          //     d.index = d.index;
-          //     d.Character = d.Character;
-          //     d.Count = +d.Count;
-          //   })
-
-          // var g = svg.append("g")
-          //     .datum(chord(matrix))
-
-
-          // creating the fill gradient
-          //function getGradID(d){ return "linkGrad-" + d.source.index + "-" + d.target.index; } 
-		function getGradID(d) { return d.source.index; }
-          
-        var grads = svg.append("defs")
-            .selectAll("linearGradient")
-            .data(chord)
-            .enter()
-            .append("linearGradient")
-            .attr("id", getGradID)
-            .attr("gradientUnits", "userSpaceOnUse")
-            //.attr("x1", function(d, i){ return innerRadius * Math.cos((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2); })
-            //.attr("y1", function(d, i){ return innerRadius * Math.sin((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2); })
-            //.attr("x2", function(d, i){ return innerRadius * Math.cos((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2); })
-            //.attr("y2", function(d, i){ return innerRadius * Math.sin((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2); })
-
-        // set the starting color (at 0%)
-        grads.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", function(d){ return color(d.source.index)})
+            //set the ending color (at 100%)
+            grads.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", function(d){ return color(d.target.index)})	  
             
-        //set the ending color (at 100%)
-        grads.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", function(d){ return color(d.target.index)})	  
-		
-          // making the ribbons
-        d3.select("g")
-            .selectAll("path")
-			
-            .data(chord)
-            .enter()
-            .append("path")
-            .attr("class", function(d) { return "chord chord-" + d.source.index + " chord-" + d.target.index })// The first chord allows us to select all of them. The second chord allows us to select each individual one. 
-            .style("fill", function(d){ return "url(#" + getGradID(d) + ")"; })
-            .attr("d", ribbon)
-            .style("stroke", function(d){ return d3.rgb(color(d.source.index)).darker(); }) //target a szinatmenethez
-            .style("opacity", 1)
+              // making the ribbons
+            d3.select("g")
+                .selectAll("path")
+            
+                .data(chord)
+                .enter()
+                .append("path")
+                .attr("class", function(d) { return "chord chord-" + d.source.index + " chord-" + d.target.index })// The first chord allows us to select all of them. The second chord allows us to select each individual one. 
+                .style("fill", function(d){ return "url(#" + getGradID(d) + ")"; })
+                .attr("d", ribbon)
+                .style("stroke", function(d){ return d3.rgb(color(d.source.index)).darker(); }) //target a szinatmenethez
+                .style("opacity", 1)
 			
 		
 
             // making the arcs
-        var g = wrapper.selectAll("g")
-            .data(chord.groups)
-            .enter()
-            .append("g")
-            .attr("class", "group")    
+            var g = wrapper.selectAll("g")
+                .data(chord.groups)
+                .enter()
+                .append("g")
+                .attr("class", "group")    
 
-        g.append("path")
-            .style("fill", function(d){ return color(d.index)})
-            .style("stroke", function(d){ return d3.rgb(color(d.index)).darker(); })
-            .attr("d", arcs)
-            .style("opacity", 1)
-			.on("mouseover", fade(0.08))
-            .on("mouseout", fade(1))
-			.append("svg:title")
-                .text(function(d, i) { return "elment: " + went[i] + "\n" + "maradt: " + stays[i] + "\n" + "jött: " + came[i]; });
+            g.append("path")
+                .style("fill", function(d){ return color(d.index)})
+                .style("stroke", function(d){ return d3.rgb(color(d.index)).darker(); })
+                .attr("d", arcs)
+                .style("opacity", 1)
+		    	.on("mouseover", fade(0.08))
+                .on("mouseout", fade(1))
+		    	.append("svg:title")
+                    .text(function(d, i) { return go + ": " + went[i] + "\n" + st + ": " + stays[i] + "\n" + co + ": " + came[i]; });
 
-        /// adding labels
-        g.append("text")
-            .each(function(d){ d.angle = (d.startAngle + d.endAngle) / 2; })
-            .attr("dy", ".35em")
-            .attr("class", "titles")
-            .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
-            .attr("transform", function(d) {
-				return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (outerRadius + 10) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");})
-            .text(function(d,i){ return Names[i]  + " " + count[i];})
-            .style("font-size", "15px")
-          // })
-        function fade(opacity) {
-            return function(d,i) {
-				svg.selectAll("path.chord")
-                    .filter(function(d) { return d.source.index != i && d.target.index != i; })
-                    .transition()
-                    .style("opacity", opacity);
-					
-				
-            };
-							   
-							   	
-        }//fade
+            /// adding labels
+            g.append("text")
+                .each(function(d){ d.angle = (d.startAngle + d.endAngle) / 2; })
+                .attr("dy", ".35em")
+                .attr("class", "titles")
+                .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+                .attr("transform", function(d) {
+		    		return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (outerRadius + 10) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");})
+                .text(function(d,i){ return Names[i]  + " " + count[i];})
+                .style("font-size", "15px")
+              // })
+            function fade(opacity) {
+                return function(d,i) {
+		    		svg.selectAll("path.chord")
+                        .filter(function(d) { return d.source.index != i && d.target.index != i; })
+                        .transition()
+                        .style("opacity", opacity);
+                };			   	
+            }
         }
     },
 })

@@ -1,11 +1,13 @@
 let app = new Vue({
     el: '#app',
     data: {
+        //when the page begins, this job is selected
         selected: 'Bartender/Pincér/Szakács',
         matrix: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0, 0, 0], [0, 0, 0, 10, 0, 0, 2, 0, 0, 2, 0, 0, 6, 0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 0, 1, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 2, 0, 1, 1, 2, 1, 1, 0, 1, 12, 0, 0, 0, 5, 0, 0, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 5, 6, 2, 0, 0, 6, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 4, 0, 0, 1, 6, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 1, 0, 0, 4, 0, 0, 1, 0, 14, 12, 0, 0, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 10, 0, 0, 12, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 2, 3, 0, 2, 0, 1, 7, 0, 0, 0, 10, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 6, 0, 0, 0, 0, 0, 5, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 8, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1], [0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 10, 0, 1, 0, 0, 0, 0, 0, 2, 14]],
         isSelected: false,
         current: 0,
 
+        //data depending on language
         jobs: undefined,
         jobs_HU: ["Bartender/Pincér/Szakács", "Eladó/Ügynök/Recepciós", "Fodrász/Kozmetikus", "Igazgató/Vállalkozó",
         "Informatikus", "Irodai alkalmazott", "Közalkalmazott", "Médiamunkás", "Mérnök/Műépítész", "Nevelő/Au pair/Önkéntes",
@@ -55,10 +57,9 @@ let app = new Vue({
         places_RO: ['America', 'Bălan', 'Baraolt', 'Miercurea Ciuc', 'Europa', 'Gheorgheni', 'Cluj Napoca', 'Covasna', 'Târgu Secuiesc', 'Ungaria', 'Toplița', 'Târgu Mureș', 'Alte', 'Alte orașe din România', 'Praid', 'Sighișoara', 'Sfântu Gheorghe', 'Vlăhița', 'Sovata', 'Reghin', 'Cristuru Secuiesc', 'Odorheiu Secuiesc']
     },
 
+    //watching the job, if the selected job changes, we change the chord diagrams content
     watch: {
-
         selected() {
-            event.preventDefault();
             console.log(this.selected);
             if(["Bartender/Pincér/Szakács", "Bartender/Waiter/Cook", "Barman/Chelner/Bucătar"].includes(this.selected))
                 this.matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0, 0, 0], [0, 0, 0, 10, 0, 0, 2, 0, 0, 2, 0, 0, 6, 0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 0, 1, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 2, 0, 1, 1, 2, 1, 1, 0, 1, 12, 0, 0, 0, 5, 0, 0, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 5, 6, 2, 0, 0, 6, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 4, 0, 0, 1, 6, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 1, 0, 0, 4, 0, 0, 1, 0, 14, 12, 0, 0, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 10, 0, 0, 12, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 2, 3, 0, 2, 0, 1, 7, 0, 0, 0, 10, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 6, 0, 0, 0, 0, 0, 5, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 8, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1], [0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 10, 0, 1, 0, 0, 0, 0, 0, 2, 14]]
@@ -98,10 +99,13 @@ let app = new Vue({
 		    	this.matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 22, 0, 1, 3, 0, 0, 2, 0, 2, 7, 0, 0, 0, 0, 2, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 9, 2, 1, 0, 3, 0, 2, 1, 0, 0, 0, 1, 0, 0, 0, 0, 2], [0, 0, 0, 0, 0, 0, 50, 0, 0, 2, 0, 1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 1, 2, 0, 0, 5, 2, 3, 4, 0, 1, 6, 0, 0, 0, 14, 0, 0, 0, 0, 2], [1, 0, 0, 0, 0, 0, 1, 2, 8, 2, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 2], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 1, 0, 6, 0, 0, 5, 0, 15, 12, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 9, 0, 0, 7, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 1, 1, 0, 3, 0, 1, 5, 0, 0, 0, 17, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 0, 0, 0, 0, 7, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5, 2, 0, 0, 0, 0, 0, 0, 9, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0], [0, 0, 0, 1, 0, 2, 3, 0, 0, 5, 0, 0, 4, 0, 1, 0, 0, 0, 0, 0, 0, 3]]
 		    else if(["Más", "Other", "Altele"].includes(this.selected))
 		    	this.matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 25, 0, 3, 0, 1, 3, 1, 0, 1, 0, 1, 61, 0, 0, 0, 0, 0, 0, 0, 0, 1], [1, 0, 24, 0, 0, 0, 1, 6, 0, 4, 0, 0, 20, 0, 0, 0, 6, 0, 0, 0, 0, 2], [0, 2, 0, 33, 1, 0, 2, 1, 0, 4, 0, 1, 27, 0, 0, 0, 1, 1, 0, 0, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 4, 0, 45, 4, 1, 0, 13, 0, 3, 42, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0, 150, 0, 0, 4, 0, 0, 44, 0, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 3, 5, 0, 1, 11, 10, 20, 14, 0, 2, 61, 0, 0, 0, 36, 0, 0, 0, 0, 1], [1, 0, 0, 4, 0, 1, 1, 12, 55, 3, 0, 2, 33, 0, 0, 0, 1, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 2, 0, 1, 1, 0, 0, 2, 53, 10, 53, 0, 0, 0, 0, 0, 0, 3, 0, 0], [0, 0, 0, 0, 0, 0, 11, 1, 0, 7, 0, 107, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 4, 0, 16, 0, 0, 0, 1, 0, 0, 3], [1, 0, 0, 0, 1, 0, 13, 0, 0, 1, 0, 4, 62, 0, 0, 65, 0, 0, 0, 0, 1, 1], [1, 0, 2, 3, 0, 1, 8, 7, 4, 13, 0, 0, 34, 0, 0, 0, 58, 0, 0, 0, 0, 0], [0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 2, 11, 0, 0, 0, 0, 26, 0, 0, 0, 4], [0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 6, 13, 0, 0, 0, 1, 0, 36, 0, 0, 0], [1, 0, 0, 1, 0, 1, 8, 0, 0, 1, 0, 11, 38, 0, 0, 0, 0, 0, 0, 55, 0, 0], [0, 0, 0, 0, 0, 1, 3, 1, 0, 13, 0, 4, 19, 0, 0, 0, 0, 0, 0, 0, 31, 3], [0, 0, 0, 0, 0, 0, 3, 0, 0, 9, 0, 1, 11, 0, 0, 1, 0, 0, 0, 0, 2, 35]]
-                this.generateChord(this.gone, this.come, this.stayed, this.places);
+            
+            //the generated chord needs some language depending parameters 
+            this.generateChord(this.gone, this.come, this.stayed, this.places);
             }
     },
 
+    //setting up the default language
     mounted() {
         this.jobs = this.jobs_HU;
         this.title = this.title_HU;
@@ -115,11 +119,14 @@ let app = new Vue({
         
         document.getElementsByTagName("title")[0].innerHTML = this.tab_title;
         document.getElementById("segitseg").innerHTML = this.expl;
+
+        //calling the chord generator function wiht language paramteres
         this.generateChord(this.gone, this.come, this.stayed, this.places);
     },
 
     methods: {
 
+        //when clicking on language changing buttons, all the text data should change
         changeLang(lang) {
             if (lang == "HU") {
                 this.jobs = this.jobs_HU;
@@ -156,76 +163,80 @@ let app = new Vue({
             document.getElementsByTagName("title")[0].innerHTML = this.tab_title;
         },
         
+        //chord generator function using D3.js
         generateChord(go, co, st, places) {
-            d3.selectAll("svg > *").remove();
+            //first, we should clear the old chart, to make room for the new
             d3.select("#chart").remove();
             
+            //calculating some data depending on selected job
             var stays = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var came = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var count =[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var went = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             
-            for (var i = 1; i < 22; ++i) {
-                stays[i] = this.matrix[i][i];
-            }
-        
+            //on the diagon we see the peopel who stayed in the same city
             for (var i = 0; i < 22; ++i) {
                 stays[i] = this.matrix[i][i]
                 for (var j = 0; j < 22; ++j) {
-                    came[i] = came[i] + this.matrix[j][i]
-                    count[i] = count[i] + this.matrix[i][j];
+                    came[i] = came[i] + this.matrix[j][i]     //sum values on the column 
+                    count[i] = count[i] + this.matrix[i][j];  //sum values on the row
                 }
             }
         
+            //we should not consider the stayed value in went and came
             for (var i = 1; i < 22; ++i) {
                 went[i] = count[i] - stays[i];
                 came[i] = came[i] - stays[i];
             }
 
+            //setting up the chords location
             var w = 1000;
             var h = 700;
             var margin = { top: 20, bottom: 0, left: 0, right: 0}
         
-            var width = w - margin.left - margin.right;
-            var height = h - margin.top - margin.bottom ;
-        
+            var width = w - margin.left - margin.right; //horizontal placing
+            var height = h - margin.top - margin.bottom; //setting up the distance between chords and circle
+
+            //selecting the html tag with #chord id to place there the svg
             var svg = d3.select("#chord")
                 .append("svg")
-                .attr("id", "chart")
-                .attr("width", w)
-                .attr("height", 1000)
+                .attr("id", "chart") //adding the chart name, so we can delete it later to update
+                .attr("width", w)    //dimensions
+                .attr("height", w)
         
+            //grouping svg elements together and placing on the middle
             var wrapper = svg.append("g")
                 .attr("transform", "translate(" + width / 2 + "," + (height + 300) / 2 + ")")
         
             var outerRadius = Math.min(width, height) * 0.5 -55
             var innerRadius = outerRadius - 30
         
-            var Names = places;//[ 'Amerika', 'Balánbánya', 'Barót',   'Csíkszereda', 'Európa',  'Gyergyószentmiklós', 'Kolozsvár', 'Kovászna', 'Kézdivásárhely', 'Magyarország', 'Maroshévíz', 'Marosvásárhely', 'Más',     'Más románia város', 'Parajd',  'Segesvár', 'Sepsiszentgyörgy', 'Szentegyháza', 'Szováta', 'Szászrégen', 'Székelykeresztúr', 'Székelyudvarhely']
-            var colors = ["#8d6e63", "#ef5350",    "#d32f2f", "#ffa726",     "#ffca28", "#558b2f",            "#1e88e5",   "#cddc39",  "#64b5f6",        "#d32f2f",   "#3f51b5"   ,   "#7cb342",        "#ff1744", "#ffeb3b",           "#f48fb1", "#d81b60",  "#ab47bc",          "#26a69a",      "#ce93d8", "#ff4081",    "#fdd835",          "#ff7043"]
+            var Names = places;
+            var colors = ["#8d6e63", "#ef5350", "#d32f2f", "#ffa726", "#ffca28", "#558b2f", "#1e88e5", "#cddc39", "#64b5f6", "#d32f2f", "#3f51b5", "#7cb342", "#ff1744", "#ffeb3b", "#f48fb1", "#d81b60", "#ab47bc", "#26a69a", "#ce93d8", "#ff4081", "#fdd835", "#ff7043"]
             var opacity = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
              
+            //setting up chorsd attributes
             var chordGenerator = d3.chord()
-			    .padAngle(0.04)
-			    .sortSubgroups(d3.descending)
+			    .padAngle(0.04)                //padding between ribbons
+			    .sortSubgroups(d3.descending)  //the big ribbons will be under the smaller ones
 			    .sortChords(d3.descending)
-			    .sortGroups(d3.descending) //rendezes
+			    .sortGroups(d3.descending)     //sorting cities
 
+            //using the matrix to generate
             var chord = chordGenerator(this.matrix);
 
+            //creating the arcs with the radiuses
             var arcs = d3.arc()
 			    .innerRadius(innerRadius)
 			    .outerRadius(outerRadius);
 
+            //setting up ribbon size
             var ribbon = d3.ribbon()
 			    .radius(250)
-
-            var opacities = d3.scaleOrdinal()
-		    	.domain(d3.range(22))
-		    	.range(opacity)
-
+            
+            //adding colors to diagram
             var color = d3.scaleOrdinal()
-		    	.domain(d3.range(22))
+		    	.domain(d3.range(22)) // the 22 cities should keep their color
                 .range(colors)
                 
 		    function getGradID(d) { return d.source.index; }
@@ -236,13 +247,9 @@ let app = new Vue({
                 .enter()
                 .append("linearGradient")
                 .attr("id", getGradID)
-                .attr("gradientUnits", "userSpaceOnUse")
-                //.attr("x1", function(d, i){ return innerRadius * Math.cos((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2); })
-                //.attr("y1", function(d, i){ return innerRadius * Math.sin((d.source.endAngle-d.source.startAngle) / 2 + d.source.startAngle - Math.PI/2); })
-                //.attr("x2", function(d, i){ return innerRadius * Math.cos((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2); })
-                //.attr("y2", function(d, i){ return innerRadius * Math.sin((d.target.endAngle-d.target.startAngle) / 2 + d.target.startAngle - Math.PI/2); })
+                //.attr("gradientUnits", "userSpaceOnUse")
 
-            // set the starting color (at 0%)
+            // set the starting color
             grads.append("stop")
                 .attr("offset", "100%")
                 .attr("stop-color", function(d){ return color(d.source.index)})
@@ -250,23 +257,20 @@ let app = new Vue({
             //set the ending color (at 100%)
             grads.append("stop")
                 .attr("offset", "0%")
-                .attr("stop-color", function(d){ return color(d.target.index)})	  
+                .attr("stop-color", function(d){ return color(d.target.index)})
             
-              // making the ribbons
+            // making the ribbons
             d3.select("g")
                 .selectAll("path")
-            
                 .data(chord)
                 .enter()
                 .append("path")
                 .attr("class", function(d) { return "chord chord-" + d.source.index + " chord-" + d.target.index })// The first chord allows us to select all of them. The second chord allows us to select each individual one. 
                 .style("fill", function(d){ return "url(#" + getGradID(d) + ")"; })
                 .attr("d", ribbon)
-                .style("stroke", function(d){ return d3.rgb(color(d.source.index)).darker(); }) //target a szinatmenethez
+                .style("stroke", function(d){ return d3.rgb(color(d.source.index)).darker(); }) //outilne color
                 .style("opacity", 1)
 			
-		
-
             // making the arcs
             var g = wrapper.selectAll("g")
                 .data(chord.groups)
@@ -294,7 +298,6 @@ let app = new Vue({
 		    		return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (outerRadius + 10) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");})
                 .text(function(d,i){ return Names[i]  + " " + count[i];})
                 .style("font-size", "15px")
-              // })
             function fade(opacity) {
                 return function(d,i) {
 		    		svg.selectAll("path.chord")

@@ -3,13 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title>{{tab_title}}</title>
+
+	<!-- using D3.js and Vue -->
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	
+	<!-- using bootrstap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<style type="text/css">
 	
-		/* No style rules here yet */
+	<!-- style -->
+	<style type="text/css">
 		body,html{
 			margin: 0;
 			padding: 0;
@@ -26,6 +29,7 @@
 			padding-left: 9cm;
 		}
 
+		/* job selecting table */
 		#color-true {
 			background-color: rgb(137, 180, 235);
 		}
@@ -38,54 +42,56 @@
 </head>
 <body>
 	<div id="app">
-	<table>
-		<tbody>
-			<tr>
-				<td>
-					<button class="btn" @click="changeLang('HU')">HU</button>
-					<button class="btn" @click="changeLang('EN')">EN</button>
-					<button class="btn" @click="changeLang('RO')">RO</button>
-				</td>
-				<td style="padding-left:13vw">
-					<h2 align="center">{{title}}</h2>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<br>
-	<br>
-	<div id = "text">
-		<h4 id="segitseg" align="center"></h4>
-		<h4 id="magyarazat" align="center"></h4>
-	</div>
-	<br>
-					
-	<h3 style="padding-left:7cm">{{selected}}</h3>
-	<table class="table" style="font-size: 15pt">
-		<tbody>
-			<tr>
-				<td>
-					<table class="table">
-						<tbody v-for="(job, index) in jobs" :key="index">
-							<tr>
-								<td v-bind:id="'color-' + (selected==job)"
-									style="cursor: pointer"
-									@click="selected=job; current=index">
-									{{job}}
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-				<td id="chord">
-						<script src="index.js"></script>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	
-	
+	  <table>
+	  	<tbody>
+	  		<tr>
+	  			<!-- language changing buttons -->
+	  			<td>
+	  				<button class="btn" @click="changeLang('HU')">HU</button>
+	  				<button class="btn" @click="changeLang('EN')">EN</button>
+	  				<button class="btn" @click="changeLang('RO')">RO</button>
+	  			</td>
+	  			<td style="padding-left:13vw">
+	  				<h2 align="center">{{title}}</h2>
+	  			</td>
+	  		</tr>
+	  	</tbody>
+	  </table>
+	  <br>
+	  <br>
+	  <!-- explanation -->
+	  <div id = "text">
+	  	<h4 id="segitseg" align="center"></h4>
+	  	<h4 id="magyarazat" align="center"></h4>
+	  </div>
+	  <br>
+	  	
+	  <!-- content: table wint two entries -->
+	  <h3 style="padding-left:7cm">{{selected}}</h3>
+	  <table class="table" style="font-size: 15pt">
+	  	<tbody>
+	  		<tr>
+	  			<td>
+					<!-- job selection table -->
+	  				<table class="table">
+	  					<tbody v-for="(job, index) in jobs" :key="index">
+	  						<tr>
+	  							<td v-bind:id="'color-' + (selected==job)"
+	  								style="cursor: pointer"
+	  								@click="selected=job; current=index">
+	  								{{job}}
+	  							</td>
+	  						</tr>
+	  					</tbody>
+	  				</table>
+				  </td>
+				<!-- the dinamic chord diagram -->
+	  			<td id="chord">
+	  				<script src="index.js"></script>
+	  			</td>
+	  		</tr>
+	  	</tbody>
+	  </table>
 	</div>
   </body>
 </html>

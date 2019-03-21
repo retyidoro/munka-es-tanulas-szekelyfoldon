@@ -25,7 +25,7 @@ let app = new Vue({
         title: undefined,
         title_HU: "Munkakörök és elvándorlások közti kapcsolat megfigyelése Székelyföldön",
         title_RO: "Analizarea relației între locuri de muncă și migrațiune la Székelyföld",
-        title_EN: "Analysing the relation between working and migration on Székelyföld",
+        title_EN: "Analyzing the relation between working and migration on Székelyföld",
 
         tab_title: undefined,
         tab_title_HU: "Munka és tanulás Székelyföldön",
